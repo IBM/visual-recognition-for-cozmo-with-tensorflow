@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tensorflow-openwhisk-train-cozmo
+spec:
+  restartPolicy: Never
+  containers:
+    - name: tensorflow-openwhisk-train-cozmo
+      image: nheidloff/tensorflow-openwhisk-train-cozmo:latest
+      imagePullPolicy: Always
+      env:
+      - name: OS_USER_ID
+        value: xxxx 
+      - name: OS_PASSWORD
+        value: xxxx
+      - name: OS_PROJECT_ID
+        value: xxxxxxx 
+      - name: OS_REGION_NAME
+        value: dallas
+      - name: OS_BUCKET_NAME
+        value: tensorflow
+      - name: OS_FILE_NAME
+        value: cozmo-photos.zip
+      - name: TF_MODEL
+        value: mobilenet_0.50_224   # inception_v3, mobilenet_0.50_224, mobilenet_0.50_128, mobilenet_0.50_16

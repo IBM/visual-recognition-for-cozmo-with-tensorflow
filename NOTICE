@@ -1,0 +1,24 @@
+This product includes software originally developed by IBM Corporation
+Copyright 2017 IBM Corp.
+https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow
+
+
+The following projects/libraries are used in the Python code but not included in the project:
+
+https://github.com/googlecodelabs/tensorflow-for-poets-2 - Apache License 2.0
+https://github.com/tensorflow - Apache License 2.0
+https://github.com/openstack/python-swiftclient - Apache License 2.0
+https://github.com/openstack/python-keystoneclient - Apache License 2.0
+https://flask.pocoo.org/ - BSD Licence
+https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/docker - Apache License 2.0
+https://github.com/anki/cozmo-python-sdk - Apache License 2.0
+
+
+See the package.json files in '3-classify/openwhisk-api' and '7-test-inweb-app' for used npm modules.
+
+
+The project contains a subset of the code from https://github.com/cfjedimaster/Serverless-Examples/tree/master/file_upload
+which has been developed by an IBMer.
+
+The project contains a subset of the code from https://github.com/watson-developer-cloud/visual-recognition-nodejs 
+which has been developed by IBMers.

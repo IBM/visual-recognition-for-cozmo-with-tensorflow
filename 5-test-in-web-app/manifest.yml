@@ -1,0 +1,7 @@
+applications:
+- name: visual-recognition-for-cozmo-with-tensorflow
+  path: .
+  command: npm start
+  memory: 512M
+  env:
+    NODE_ENV: production

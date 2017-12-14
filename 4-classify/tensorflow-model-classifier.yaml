@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: classifier-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: classifier-server
+    spec:
+      containers:
+      - name: classifier-container
+        image: nheidloff/tensorflow-kubernetes-classify
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: classifier-service
+  name: classifier-service
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: classifier-server
+  type: NodePort

@@ -1,0 +1,31 @@
+._demo--container
+  a.wordmark(href='https://bluemix.net')
+    span.wordmark--left IBM
+    span.wordmark--right Cloud
+  nav.heading-nav(role='menubar')
+    li.base--li.heading-nav--li(role='presentation')
+      a.heading-nav--item(href='http://heidloff.net/article/visual-recognition-for-cozmo-with-tensorflow', role='menuitem') Docs
+    li.base--li.heading-nav--li(role='presentation')
+      a.heading-nav--item(href='https://ansi.23-5.eu/', role='menuitem') Ansgar Schmidt
+    li.base--li.heading-nav--li(role='presentation')
+      a.heading-nav--item(href='https://twitter.com/nheidloff', role='menuitem') Niklas Heidloff    
+._demo--banner.banner
+  ._demo--container
+    .banner--service-container
+      .banner--service-icon-container
+        img.banner--service-icon(src='/images/service-icon.svg', alt='Visual Recognition API Icon')
+      .banner--service-info
+        h1.banner--service-title.base--h1
+          img.banner--service-icon_INLINE(src='/images/service-icon.svg', alt='Visual Recognition API Icon')
+          | Visual Recognition for Anki Cozmo with TensorFlow
+        .banner--service-description
+          | This sample application uses an extended MobileNet model to recognize different toys (deer, dragon, dino). The predictions against the model are executed by TensorFlow running in an OpenWhisk function.
+    .banner--service-resource-container
+      .banner--row
+        .banner--service-resource
+          span.icon.icon-link
+          strong Resources:
+      .banner--row
+        .banner--service-links
+          li.base--li.banner--service-link-item
+            a.base--a.base--start-free-in-bluemix(href='https://console.bluemix.net/registration/') Start free in IBM Cloud

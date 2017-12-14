@@ -1,0 +1,7 @@
+.vscode
+1-take-pictures/pictures
+2-upload-pictures/upload-pictures-nh.py
+3-train/train-nh.yml
+4-classify/classifier-nh.py
+5-test-in-web-app/.env
+6-play-with-cozmo/photos

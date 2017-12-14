@@ -1,0 +1,34 @@
+html(lang='en')
+  head
+    title Visual Recognition for Anki Cozmo with TensorFlow
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='ct' content='#{locals.ct}')
+    meta(name='og:title' content='Visual Recognition for Anki Cozmo with TensorFlow')
+    meta(name='og:description' content='Visual Recognition for Anki Cozmo with TensorFlow')
+    link(rel='icon', href='/images/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/training.css')
+    link(rel='stylesheet', href='/css/footer.css')
+    block extra-header
+    link(rel='stylesheet', href='/css/extra.css')
+    link(rel='stylesheet', href='/css/retraining.css')
+  body
+    header._demo--heading
+      include ./includes/header.jade
+    div.positioning-offset
+    block content
+    div._demo--banner.bottom-banner
+      include ./includes/footer.jade
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js', data-pace-options='{"ajax": false}')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.7/jquery.fileupload.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.7/jquery.iframe-transport.min.js')
+    script(src='/js/bundle.js')
+    if locals.bluemixAnalytics
+      script(src='/js/analytics.js')
+      script(src='/js/vendors/tealeaf.js')
+
+

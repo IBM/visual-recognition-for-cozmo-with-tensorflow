@@ -4,7 +4,7 @@ The [Anki Cozmo](https://www.anki.com/cozmo) robot can recognize [faces](http://
 
 Watch the [video](https://www.youtube.com/user/nheidloff) and check out the [slides](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740) to see how Cozmo can recognize three different toys:
 
-[![Video](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/screenshots/slideshare.png)](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740)
+[![Video](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/slideshare.png)](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740)
 
 Authors: 
 
@@ -16,11 +16,11 @@ Authors:
 
 The training is done via TensorFlow and a retrained MobileNet model on Kubernetes.
 
-![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/screenshots/architecture-1.png "Training")
+![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-1.png "Training")
 
 The classification is done via Tensorflow running in an [OpenWhisk](https://www.ibm.com/cloud/functions) function.
 
-![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/screenshots/architecture-2.png "Classification")
+![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-2.png "Classification")
 
 For more details check out the blog entries from Ansgar and me:
 

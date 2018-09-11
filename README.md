@@ -18,16 +18,15 @@ The training is done via TensorFlow and a retrained MobileNet model on Kubernete
 
 ![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-1.png "Training")
 
-The classification is done via Tensorflow running in an [OpenWhisk](https://www.ibm.com/cloud/functions) function.
+The classification is done via TensorFlow running in an [OpenWhisk](https://www.ibm.com/cloud/functions) function.
 
 ![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-2.png "Classification")
 
 For more details check out the blog entries from Ansgar and me:
 
 * [Sample Application to classify Images with TensorFlow and OpenWhisk](https://heidloff.net/article/visual-recognition-tensorflow)
-* [Accessing IBM Object Store from Python](https://ansi.23-5.eu/2017/11/accessing-ibm-object-store-python/)
-* [Image Recognition with Tensorflow training on Kubernetes](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/)
-* [Image Recognition with Tensorflow classification on OpenWhisk](https://ansi.23-5.eu/2017/11/image-recognition-tensorflow-classification-openwhisk/)
+* [Image Recognition with TensorFlow training on Kubernetes](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/)
+* [Image Recognition with TensorFlow classification on OpenWhisk](https://ansi.23-5.eu/2017/11/image-recognition-tensorflow-classification-openwhisk/)
 * [Visual Recognition with TensorFlow and OpenWhisk](http://heidloff.net/article/visual-recognition-tensorflow-openwhisk)
 
 
@@ -59,16 +58,15 @@ $ python3 take-pictures.py deer
 
 ## 2. Upload Pictures
 
-Create an [IBM Object Storage](https://console.bluemix.net/catalog/infrastructure/object-storage-group) instance. Choose the lite Swift option. Read Ansgar's [blog](https://ansi.23-5.eu/2017/11/accessing-ibm-object-store-python/) for details.
+Create an instance of [IBM Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage).
 
-Copy/remember the IBM Object Storage credentials: ‘region’, ‘projectId’, ‘userId’ and ‘password’. Paste them in [upload-pictures.py](2-upload-pictures/upload-pictures.py).
+Create a service credential, then copy/remember the fields ‘apikey' and 'resource_instance_id' from the credentials. Paste them in [upload-pictures.py](2-upload-pictures/upload-pictures.py).
 
 Invoke these commands:
 
 ```sh
-$ cd visual-recognition-for-cozmo-with-tensorflow/2-upload-pictures
-$ pip3 install python-swiftclient
-$ pip3 install python-keystoneclient
+$ cd ../visual-recognition-for-cozmo-with-tensorflow/2-upload-pictures
+$ pip3 install ibm-cos-sdk
 $ python3 upload-pictures.py
 ```
 

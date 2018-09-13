@@ -36,9 +36,9 @@ Install the [Cozmo SDK](http://cozmosdk.anki.com/docs/initial.html).
 
 Get a free [IBM Cloud lite](https://console.bluemix.net/registration/) account.
 
-Install the [IBM Cloud/Bluemix](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
 
-Install [Docker](https://docs.docker.com/engine/installation/).
+Install [Docker](https://docs.docker.com/engine/installation/) and register for an account on [DockerHub](https://hub.docker.com/).
 
 Create a free/lite [Kubernetes cluster](https://console.bluemix.net/containers-kubernetes/catalogCluster).
 
@@ -50,7 +50,7 @@ Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kube
 Take pictures of an object by invoking these commands and circling Cozmo around the object for 10 seconds. Replace 'deer' with a name for your object:
 
 ```sh
-$ git clone https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow.git
+$ git clone https://github.com/IBM/visual-recognition-for-cozmo-with-tensorflow.git
 $ cd visual-recognition-for-cozmo-with-tensorflow/1-take-pictures
 $ python3 take-pictures.py deer
 ```
@@ -65,7 +65,7 @@ Create a service credential, then copy/remember the fields ‘apikey' and 'resou
 Invoke these commands:
 
 ```sh
-$ cd ../visual-recognition-for-cozmo-with-tensorflow/2-upload-pictures
+$ cd visual-recognition-for-cozmo-with-tensorflow/2-upload-pictures
 $ pip3 install ibm-cos-sdk
 $ python3 upload-pictures.py
 ```
@@ -73,7 +73,7 @@ $ python3 upload-pictures.py
 
 ## 3. Train the Model
 
-Paste the values of ‘region’, ‘projectId’, ‘userId’ and ‘password’ in [train.yml](3-train/train.yml).
+Paste the values of ‘aws_access_key_id’ and ‘aws_secret_access_key’ from your IBM COS credentials in [train.yml](3-train/train.yml).
 
 Replace 'nheidloff' with your DockerHub name and run these commands:
 
@@ -81,20 +81,20 @@ Replace 'nheidloff' with your DockerHub name and run these commands:
 $ cd visual-recognition-for-cozmo-with-tensorflow/3-train
 $ docker build -t nheidloff/tensorflow-openwhisk-train-cozmo:latest .
 $ docker push nheidloff/tensorflow-openwhisk-train-cozmo:latest
-$ bx login -a api.ng.bluemix.net
-$ bx cs cluster-config mycluster
+$ ibmcloud login -a api.ng.bluemix.net
+$ ibmcloud cs cluster-config mycluster
 $ export KUBECONFIG=/Users/nheidlo.....
 $ kubectl apply -f train.yml 
 ```
 
-After this you should see the files 'retrained_graph_cozmo.pb' and 'retrained_labels_cozmo.txt' in the 'tensorflow' container in IBM Object Storage.
+After this you should see the files 'retrained_graph_cozmo.pb' and 'retrained_labels_cozmo.txt' in the 'tensorflow' container in IBM Cloud Object Storage.
 
 Read Ansgar's [blog](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/) for more details.
 
 
 ## 4. Deploy the Model to OpenWhisk
 
-Paste the values of ‘region’, ‘projectId’, ‘userId’ and ‘password’ in [classifier.py](4-classify/classifier.py).
+Paste the values of ‘apikey’ and ‘resource_instance_id’ in [classifier.py](4-classify/classifier.py).
 
 Replace 'nheidloff' with your DockerHub name and run these commands:
 
@@ -103,22 +103,22 @@ $ cd visual-recognition-for-cozmo-with-tensorflow/4-classify
 $ docker build -t nheidloff/tensorflow-openwhisk-classifier-cozmo:latest .
 $ docker push nheidloff/tensorflow-openwhisk-classifier-cozmo:latest
 $ cd visual-recognition-for-cozmo-with-tensorflow/4-classify/openwhisk-api
-$ bx login -a api.ng.bluemix.net
-$ bx target -o <your-organization> -s <your-space>
-$ bx plugin install Cloud-Functions -r Bluemix
-$ wsk package create visualRecognitionCozmo
-$ wsk action create visualRecognitionCozmo/tensorflow-classify --docker nheidloff/tensorflow-openwhisk-classifier-cozmo:latest
+$ ibmcloud login -a api.ng.bluemix.net
+$ ibmcloud target -o <your-organization> -s <your-space>
+$ ibmcloud plugin install Cloud-Functions -r Bluemix
+$ ibmcloud wsk package create visualRecognitionCozmo
+$ ibmcloud wsk action create visualRecognitionCozmo/tensorflow-classify --docker nheidloff/tensorflow-openwhisk-classifier-cozmo:latest
 $ npm install
 $ sh ./deploy.sh
-$ wsk action create --sequence visualRecognitionCozmo/classifyAPI visualRecognitionCozmo/classifyImage,visualRecognitionCozmo/tensorflow-classify --web raw
+$ ibmcloud wsk action create --sequence visualRecognitionCozmo/classifyAPI visualRecognitionCozmo/classifyImage,visualRecognitionCozmo/tensorflow-classify --web raw
 ```
 
 
 ## 5. Test the Model via the Web Application
 
-In the [OpenWhisk web application](https://console.bluemix.net/openwhisk/manage/actions) choose your sequence and open 'Additional Details'. From there copy the URL into the clipboard. Create a new file '.env' in the '5-test-in-web-app' directory. See [.env-template](5-test-in-web-app/.env-template) for an example. Paste the URL in this file.
+In the [IBM Cloud Functions web console](https://console.bluemix.net/openwhisk/actions) choose your sequence (named `classifyAPI`) and select 'Endpoints' from the menu on the left. From there copy the HTTP Method Public URL to the clipboard. Create a new file '.env' in the '5-test-in-web-app' directory. See [.env-template](5-test-in-web-app/.env-template) for an example. Paste the URL in this file.
 
-From the directory 'web-app' run these commands:
+Run these commands:
 
 ```sh
 $ cd visual-recognition-for-cozmo-with-tensorflow/5-test-in-web-app
@@ -131,15 +131,17 @@ Open the web application via [http://localhost:3000/](http://localhost:3000/).
 Optionally: In order to deploy the application to the IBM Cloud, change the application name in [manifest.yml](5-test-in-web-app/manifest.yml) to something unique and run these commands:
 
 ```sh
-$ bx login -a api.ng.bluemix.net
-$ bx target -o <your-organization> -s <your-space>
-$ cf push
+$ ibmcloud login -a api.ng.bluemix.net
+$ ibmcloud target -o <your-organization> -s <your-space>
+$ ibmcloud cf push
 ```
 
 Open the web application via [http://your-application-name.mybluemix.net/](http://your-application-name.mybluemix.net/).
 
 
 ## 6. Test Visual Recognition with Cozmo
+
+Paste the value of your sequence endpoint from step 5 into [find.py](6-play-with-cozmo/find.py).
 
 Place your object(s) in a circle around Cozmo and run these commands. Replace 'deer' with a name for your object:
 

@@ -1,9 +1,24 @@
+# Copyright 2018 IBM Corp. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
 import os
 import flask
 import base64
 import numpy               as     np
 import tensorflow          as     tf
-from   swiftclient.service import Connection
+import ibm_boto3
+from   ibm_botocore.client import Config
 import urllib.request
 
 app       = flask.Flask(__name__)
@@ -60,22 +75,21 @@ def init():
         if message and not isinstance(message, dict):
             flask.abort(404)
 
-        conn = Connection(key='xxx',
-                          authurl='https://identity.open.softlayer.com/v3',
-                          auth_version='3',
-                          os_options={"project_id": 'xxx',
-                                      "user_id": 'xxx',
-                                      "region_name": 'dallas'}
-                          )
+        cos = ibm_boto3.resource('s3',
+			ibm_api_key_id='apikey',
+			ibm_service_instance_id='resource_instance_id',
+			ibm_auth_endpoint='https://iam.bluemix.net/oidc/token',
+			config=Config(signature_version='oauth'),
+			endpoint_url='https://s3-api.us-geo.objectstorage.softlayer.net')
 
-        obj       = conn.get_object("tensorflow", "retrained_graph_cozmo.pb")
+        obj       = cos.Object("tensorflow", "retrained_graph_cozmo.pb").get()
         graph_def = tf.GraphDef()
-        graph_def.ParseFromString(obj[1])
+        graph_def.ParseFromString(obj["Body"].read())
         with graph.as_default():
             tf.import_graph_def(graph_def)
 
-        obj    = conn.get_object("tensorflow", "retrained_labels_cozmo.txt")
-        for i in obj[1].decode("utf-8").split():
+        obj    = cos.Object("tensorflow", "retrained_labels_cozmo.txt").get()
+        for i in obj["Body"].read().decode("utf-8").split():
             labels.append(i)
 
     except Exception as e:

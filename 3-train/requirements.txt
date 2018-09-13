@@ -1,2 +1,1 @@
-python-swiftclient==3.4.0
-python-keystoneclient==3.13.0
+awscli==1.16.13

@@ -1,3 +1,2 @@
 Flask==0.12
-python-swiftclient==3.4.0
-python-keystoneclient==3.13.0
+ibm-cos-sdk==2.1.3

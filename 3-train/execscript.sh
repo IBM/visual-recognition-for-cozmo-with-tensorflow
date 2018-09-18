@@ -2,14 +2,11 @@
 
 echo ${TF_MODEL}
 
-export OS_AUTH_URL=https://identity.open.softlayer.com/v3
-export OS_IDENTITY_API_VERSION=3
-export OS_AUTH_VERSION=3
+export COS_ENDPOINT=https://s3-api.us-geo.objectstorage.softlayer.net/
 
-swift auth
-swift download ${OS_BUCKET_NAME} ${OS_FILE_NAME}
+aws --endpoint-url=${COS_ENDPOINT} s3 cp s3://${COS_BUCKET_NAME}/${COS_FILE_NAME} ${COS_FILE_NAME}
 
-unzip ${OS_FILE_NAME} -d tf_files/photos
+unzip ${COS_FILE_NAME} -d tf_files/photos
 
 python -m scripts.retrain                            \
        --bottleneck_dir=tf_files/bottlenecks         \
@@ -23,5 +20,6 @@ python -m scripts.retrain                            \
 
 cd tf_files
 
-swift upload tensorflow retrained_graph_cozmo.pb
-swift upload tensorflow retrained_labels_cozmo.txt
+aws --endpoint-url=${COS_ENDPOINT} s3 cp retrained_graph_cozmo.pb s3://${COS_BUCKET_NAME}/retrained_graph_cozmo.pb
+aws --endpoint-url=${COS_ENDPOINT} s3 cp retrained_labels_cozmo.txt s3://${COS_BUCKET_NAME}/retrained_labels_cozmo.txt
+

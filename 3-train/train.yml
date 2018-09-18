@@ -9,17 +9,13 @@ spec:
       image: nheidloff/tensorflow-openwhisk-train-cozmo:latest
       imagePullPolicy: Always
       env:
-      - name: OS_USER_ID
-        value: xxxx 
-      - name: OS_PASSWORD
-        value: xxxx
-      - name: OS_PROJECT_ID
-        value: xxxxxxx 
-      - name: OS_REGION_NAME
-        value: dallas
-      - name: OS_BUCKET_NAME
+      - name: AWS_ACCESS_KEY_ID
+        value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - name: AWS_SECRET_ACCESS_KEY
+        value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - name: COS_BUCKET_NAME
         value: tensorflow
-      - name: OS_FILE_NAME
+      - name: COS_FILE_NAME
         value: cozmo-photos.zip
       - name: TF_MODEL
         value: mobilenet_0.50_224   # inception_v3, mobilenet_0.50_224, mobilenet_0.50_128, mobilenet_0.50_16

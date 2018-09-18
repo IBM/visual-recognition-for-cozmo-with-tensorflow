@@ -7,8 +7,6 @@ The following projects/libraries are used in the Python code but not included in
 
 https://github.com/googlecodelabs/tensorflow-for-poets-2 - Apache License 2.0
 https://github.com/tensorflow - Apache License 2.0
-https://github.com/openstack/python-swiftclient - Apache License 2.0
-https://github.com/openstack/python-keystoneclient - Apache License 2.0
 https://flask.pocoo.org/ - BSD Licence
 https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/docker - Apache License 2.0
 https://github.com/anki/cozmo-python-sdk - Apache License 2.0

@@ -1,2 +1,2 @@
-Flask==0.12
+Flask==0.12.3
 ibm-cos-sdk==2.1.3

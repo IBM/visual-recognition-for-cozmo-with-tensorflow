@@ -151,8 +151,6 @@ $ python3 find.py deer
 
 # Links
 
-For more details check out the blog entries from Ansgar and myself:
-
 * [Sample Application to classify Images with TensorFlow and OpenWhisk](https://heidloff.net/article/visual-recognition-tensorflow)
 * [Image Recognition with TensorFlow training on Kubernetes](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/)
 * [Image Recognition with TensorFlow classification on OpenWhisk](https://ansi.23-5.eu/2017/11/image-recognition-tensorflow-classification-openwhisk/)

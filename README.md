@@ -2,6 +2,21 @@
 
 The [Anki Cozmo](https://www.anki.com/cozmo) robot can recognize [faces](http://cozmosdk.anki.com/docs/generated/cozmo.faces.html) and [objects](http://cozmosdk.anki.com/docs/generated/cozmo.objects.html) like Cozmo's Power Cubes which have markers on them. This [project](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow) contains sample code so that Cozmo can recognize other types of objects via [TensorFlow](https://www.tensorflow.org/).
 
+![](doc/source/images/architecture.png)
+
+## Flow
+1. The developer takes pictures (possibly, but not necessarily with an Anzi Cozmo robot) and uploads them to IBM Cloud Object Storage.
+2. The developer builds a Docker image containing TensorFlow and triggers Kubernetes to run the “training” container.
+3. The training container loads images from Cloud Object Storage.
+4. TensorFlow trains the neural network and uploads the trained net back to Cloud Object Storage.
+5. The developer builds a “classifier” Docker image that contains TensorFlow and uses it to create an IBM Cloud Functions action/sequence.
+6. The developer triggers the Cloud Function with an image, either from the sample web app or from the robot.
+7. The pre-trained TensorFlow graph is retrieved from Cloud Object Storage.
+8. The image is classified and the result is returned.
+
+
+# Watch the Videa
+
 Watch the [video](https://www.youtube.com/user/nheidloff) and check out the [slides](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740) to see how Cozmo can recognize three different toys:
 
 [![Video](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/slideshare.png)](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740)
@@ -12,23 +27,7 @@ Authors:
 * Ansgar Schmidt [@ansi](https://ansi.23-5.eu/)
 
 
-## Documentation
-
-The training is done via TensorFlow and a retrained MobileNet model on Kubernetes.
-
-![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-1.png "Training")
-
-The classification is done via TensorFlow running in an [OpenWhisk](https://www.ibm.com/cloud/functions) function.
-
-![alt text](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/architecture-2.png "Classification")
-
-For more details check out the blog entries from Ansgar and me:
-
-* [Sample Application to classify Images with TensorFlow and OpenWhisk](https://heidloff.net/article/visual-recognition-tensorflow)
-* [Image Recognition with TensorFlow training on Kubernetes](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/)
-* [Image Recognition with TensorFlow classification on OpenWhisk](https://ansi.23-5.eu/2017/11/image-recognition-tensorflow-classification-openwhisk/)
-* [Visual Recognition with TensorFlow and OpenWhisk](http://heidloff.net/article/visual-recognition-tensorflow-openwhisk)
-
+# Steps
 
 ## Prerequisites
 
@@ -149,3 +148,15 @@ Place your object(s) in a circle around Cozmo and run these commands. Replace 'd
 $ cd visual-recognition-for-cozmo-with-tensorflow/6-play-with-cozmo
 $ python3 find.py deer
 ```
+
+# Links
+
+For more details check out the blog entries from Ansgar and myself:
+
+* [Sample Application to classify Images with TensorFlow and OpenWhisk](https://heidloff.net/article/visual-recognition-tensorflow)
+* [Image Recognition with TensorFlow training on Kubernetes](https://ansi.23-5.eu/2017/11/image-recognition-with-tensorflow-training-on-kubernetes/)
+* [Image Recognition with TensorFlow classification on OpenWhisk](https://ansi.23-5.eu/2017/11/image-recognition-tensorflow-classification-openwhisk/)
+* [Visual Recognition with TensorFlow and OpenWhisk](http://heidloff.net/article/visual-recognition-tensorflow-openwhisk)
+
+# License
+[Apache 2.0](LICENSE)

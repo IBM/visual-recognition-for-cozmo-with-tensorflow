@@ -14,18 +14,21 @@ The [Anki Cozmo](https://www.anki.com/cozmo) robot can recognize [faces](http://
 7. The pre-trained TensorFlow graph is retrieved from Cloud Object Storage.
 8. The image is classified and the result is returned.
 
+## Included components
+* [Cloud Object Storage](https://console.bluemix.net/catalog/services/object-storage): Build and deliver cost effective apps and services with high reliability and fast speed to market in an unstructured cloud data store.
+* [IBM Cloud Kubernetes Service](https://console.bluemix.net/docs/containers/container_index.html): IBM Cloud Kubernetes Service manages highly available apps inside Docker containers and Kubernetes clusters on the IBM Cloud.
+* [OpenWhisk](https://console.ng.bluemix.net/openwhisk): Execute code on demand in a highly scalable, serverless environment.
+* [Tensorflow](https://www.tensorflow.org/): An open source software library for numerical computation using data flow graphs.
+
+## Featured technologies
+* [Cloud](https://www.ibm.com/developerworks/learn/cloud/): Accessing computer and information technology resources through the Internet.
+* [Serverless](https://www.ibm.com/cloud-computing/bluemix/openwhisk): An event-action platform that allows you to execute code in response to an event.
 
 # Watch the Videa
 
 Watch the [video](https://www.youtube.com/user/nheidloff) and check out the [slides](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740) to see how Cozmo can recognize three different toys:
 
 [![Video](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow/raw/master/pictures/slideshare.png)](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740)
-
-Authors: 
-
-* Niklas Heidloff [@nheidloff](http://twitter.com/nheidloff)
-* Ansgar Schmidt [@ansi](https://ansi.23-5.eu/)
-
 
 # Steps
 

@@ -24,7 +24,7 @@ The [Anki Cozmo](https://www.anki.com/cozmo) robot can recognize [faces](http://
 * [Cloud](https://www.ibm.com/developerworks/learn/cloud/): Accessing computer and information technology resources through the Internet.
 * [Serverless](https://www.ibm.com/cloud-computing/bluemix/openwhisk): An event-action platform that allows you to execute code in response to an event.
 
-# Watch the Videa
+# Watch the Video
 
 Watch the [video](https://www.youtube.com/user/nheidloff) and check out the [slides](https://www.slideshare.net/niklasheidloff/visual-recognition-with-anki-cozmo-and-tensorflow-84050740) to see how Cozmo can recognize three different toys:
 

@@ -1,4 +1,8 @@
-# Visual Recognition for Anki Cozmo with TensorFlow
+# WARNING: This repository is no longer maintained
+
+> This repository will not be updated. The repository will be kept available in read-only mode.
+
+## Visual Recognition for Anki Cozmo with TensorFlow
 
 The [Anki Cozmo](https://www.anki.com/cozmo) robot can recognize [faces](http://cozmosdk.anki.com/docs/generated/cozmo.faces.html) and [objects](http://cozmosdk.anki.com/docs/generated/cozmo.objects.html) like Cozmo's Power Cubes which have markers on them. This [project](https://github.com/nheidloff/visual-recognition-for-cozmo-with-tensorflow) contains sample code so that Cozmo can recognize other types of objects via [TensorFlow](https://www.tensorflow.org/).
 
